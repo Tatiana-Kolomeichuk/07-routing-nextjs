@@ -4,14 +4,13 @@ import css from './NotePreview.module.css';
 import Modal from "@/components/Modal/Modal";
 import { fetchNoteById } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from 'next/navigation';
 
-interface NotePreviewProps {
-  id: string;
-}
 
-export default function NotePreview({ id }: NotePreviewProps) {
+
+export default function NotePreview() {
   const router = useRouter();
+  const {id} = useParams<{ id: string }>();
 
   function goBack() {
     router.back();
@@ -57,7 +56,7 @@ export default function NotePreview({ id }: NotePreviewProps) {
               </div>
               <p className={css.content}>{note.content}</p>
               <p className={css.date}>
-                {note.updatedAt ? note.updatedAt : note.createdAt}
+                { note.createdAt}
               </p>
               <p className={css.tag}>{note.tag}</p>
             </div>

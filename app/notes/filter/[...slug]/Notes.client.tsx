@@ -12,21 +12,26 @@ import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
+import { FetchTagNote } from "@/types/note";
 
+type NotesClientProps = {
+  tag: FetchTagNote;
+};
 
-export default function App() {
+export default function App({ tag }: NotesClientProps) {
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
 
   const { data, isError } = useQuery({
-  queryKey: ["notes", page, debouncedSearch],
+  queryKey: ["notes", page, debouncedSearch, tag],
   queryFn: () =>
     fetchNotes({
       page,
       perPage: 12,
       search: debouncedSearch,
+      tag: tag === "all" ? undefined : tag,
     }),
   placeholderData: keepPreviousData,
 });

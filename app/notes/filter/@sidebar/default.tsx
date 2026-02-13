@@ -1,6 +1,7 @@
 import { FetchTagNote } from '@/types/note';
 import css from './default.module.css';
-import Link from 'next/dist/client/link';
+import Link from 'next/link';
+
 
 export default function Sidebar() {
   const tags: FetchTagNote[] = [

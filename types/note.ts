@@ -8,3 +8,11 @@ export interface Note {
   createdAt: string;
   updatedAt: string;
 }
+
+export type FetchTagNote =
+  | 'Todo'
+  | 'Work'
+  | 'Personal'
+  | 'Meeting'
+  | 'Shopping'
+  | 'all';

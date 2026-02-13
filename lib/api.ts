@@ -1,4 +1,4 @@
-import { Note } from "@/types/note";
+import { FetchTagNote, Note } from "@/types/note";
 import axios from "axios";
 
 
@@ -18,6 +18,7 @@ export interface FetchNotesParams {
   page?: number;
   perPage?: number;
   search?: string;
+  tag?: FetchTagNote; 
 }
 
 export type CreateNotePayload = {

@@ -6,11 +6,14 @@ import { fetchNoteById } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from 'next/navigation';
 
+type NotePreviewProps = {
+    noteId: string;
+};
 
 
-export default function NotePreview() {
+export default function NotePreview({ noteId }: NotePreviewProps) {
   const router = useRouter();
-  const {id} = useParams<{ id: string }>();
+ 
 
   function goBack() {
     router.back();
@@ -22,8 +25,8 @@ export default function NotePreview() {
     isError,
     error,
   } = useQuery({
-    queryKey: ['note', id],
-    queryFn: () => fetchNoteById(id),
+    queryKey: ['note',  noteId],
+    queryFn: () => fetchNoteById(noteId),
     refetchOnMount: false,
   });
 
